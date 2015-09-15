@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gulp by Tiger66639</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Tiger66639/gulp">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/Tiger66639/gulp/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/Tiger66639/gulp/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Gulp</h1>
+          <p>The streaming build system</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Tiger66639">Tiger66639</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p align="center">
+  <a href="http://gulpjs.com">
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+  </a>
+</p>
+
+<h1>
+<a id="gulp" class="anchor" href="#gulp" aria-hidden="true"><span class="octicon octicon-link"></span></a>gulp</h1>
+
+<p><strong>The streaming build system</strong></p>
+
+<p><a href="https://travis-ci.org/Tiger66639/gulp"><img src="https://travis-ci.org/Tiger66639/gulp.svg" alt="Build Status"></a></p>
+
+<h2>
+<a id="what-is-gulp" class="anchor" href="#what-is-gulp" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is gulp?</h2>
+
+<p>gulp is a toolkit that will help you automate painful or time-consuming tasks in your development workflow. For web development (if that's your thing) it can help you by doing CSS preprocessing, JS transpiling, minification, live reloading, and much more.
+Integrations are built into all major IDEs and people are loving gulp across PHP, .NET, Node.js, Java, and more. With over 1700 plugins (and plenty you can do without plugins), gulp lets you quit messing with build systems and get back to work.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>For a Getting started guide, API docs, recipes, making a plugin, etc. see the <a href="/docs/README.md">documentation page</a>!</p>
+
+<h2>
+<a id="sample-gulpfilejs" class="anchor" href="#sample-gulpfilejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample <code>gulpfile.js</code>
+</h2>
+
+<p>This file will give you a taste of what gulp does.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> gulp <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> coffee <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp-coffee<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> concat <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp-concat<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> uglify <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp-uglify<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> imagemin <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp-imagemin<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> sourcemaps <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gulp-sourcemaps<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> del <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>del<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">var</span> paths <span class="pl-k">=</span> {
+  scripts<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>client/js/**/*.coffee<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>!client/external/**/*.coffee<span class="pl-pds">'</span></span>],
+  images<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>client/img/**/*<span class="pl-pds">'</span></span>
+};
+
+<span class="pl-c">// Not all tasks need to use streams</span>
+<span class="pl-c">// A gulpfile is just another node program and you can use any package available on npm</span>
+gulp.task(<span class="pl-s"><span class="pl-pds">'</span>clean<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+  <span class="pl-c">// You can use multiple globbing patterns as you would with `gulp.src`</span>
+  <span class="pl-k">return</span> del([<span class="pl-s"><span class="pl-pds">'</span>build<span class="pl-pds">'</span></span>]);
+});
+
+gulp.task(<span class="pl-s"><span class="pl-pds">'</span>scripts<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>clean<span class="pl-pds">'</span></span>], <span class="pl-k">function</span>() {
+  <span class="pl-c">// Minify and copy all JavaScript (except vendor scripts)</span>
+  <span class="pl-c">// with sourcemaps all the way down</span>
+  <span class="pl-k">return</span> gulp.src(paths.<span class="pl-c1">scripts</span>)
+    .pipe(sourcemaps.init())
+      .pipe(coffee())
+      .pipe(uglify())
+      .pipe(<span class="pl-c1">concat</span>(<span class="pl-s"><span class="pl-pds">'</span>all.min.js<span class="pl-pds">'</span></span>))
+    .pipe(sourcemaps.<span class="pl-c1">write</span>())
+    .pipe(gulp.dest(<span class="pl-s"><span class="pl-pds">'</span>build/js<span class="pl-pds">'</span></span>));
+});
+
+<span class="pl-c">// Copy all static images</span>
+gulp.task(<span class="pl-s"><span class="pl-pds">'</span>images<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>clean<span class="pl-pds">'</span></span>], <span class="pl-k">function</span>() {
+  <span class="pl-k">return</span> gulp.src(paths.<span class="pl-c1">images</span>)
+    <span class="pl-c">// Pass in options to the task</span>
+    .pipe(imagemin({optimizationLevel<span class="pl-k">:</span> <span class="pl-c1">5</span>}))
+    .pipe(gulp.dest(<span class="pl-s"><span class="pl-pds">'</span>build/img<span class="pl-pds">'</span></span>));
+});
+
+<span class="pl-c">// Rerun the task when a file changes</span>
+gulp.task(<span class="pl-s"><span class="pl-pds">'</span>watch<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+  gulp.<span class="pl-c1">watch</span>(paths.<span class="pl-c1">scripts</span>, [<span class="pl-s"><span class="pl-pds">'</span>scripts<span class="pl-pds">'</span></span>]);
+  gulp.<span class="pl-c1">watch</span>(paths.<span class="pl-c1">images</span>, [<span class="pl-s"><span class="pl-pds">'</span>images<span class="pl-pds">'</span></span>]);
+});
+
+<span class="pl-c">// The default task (called when you run `gulp` from cli)</span>
+gulp.task(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>watch<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>scripts<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>images<span class="pl-pds">'</span></span>]);</pre></div>
+
+<h2>
+<a id="incremental-builds" class="anchor" href="#incremental-builds" aria-hidden="true"><span class="octicon octicon-link"></span></a>Incremental Builds</h2>
+
+<p>We recommend these plugins:</p>
+
+<ul>
+<li>
+<a href="https://github.com/sindresorhus/gulp-changed">gulp-changed</a> - only pass through changed files</li>
+<li>
+<a href="https://github.com/wearefractal/gulp-cached">gulp-cached</a> - in-memory file cache, not for operation on sets of files</li>
+<li>
+<a href="https://github.com/ahaurw01/gulp-remember">gulp-remember</a> - pairs nicely with gulp-cached</li>
+<li>
+<a href="https://github.com/tschaub/gulp-newer">gulp-newer</a> - pass through newer source files only, supports many:1 source:dest</li>
+</ul>
+
+<h2>
+<a id="want-to-contribute" class="anchor" href="#want-to-contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Want to contribute?</h2>
+
+<p>Anyone can help make this project better - check out the <a href="/CONTRIBUTING.md">Contributing guide</a>!</p>
+
+<h2>
+<a id="like-what-we-do" class="anchor" href="#like-what-we-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>Like what we do?</h2>
+
+<p><a href="https://gratipay.com/WeAreFractal/">Support us via Gratipay</a></p>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/wearefractal/gulp/trend.png" alt="Bitdeli Badge"></a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
