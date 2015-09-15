@@ -7,8 +7,7 @@
 # gulp
 **The streaming build system**
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Support us][gittip-image]][gittip-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
-
+[![Build Status](https://travis-ci.org/Tiger66639/gulp.svg)](https://travis-ci.org/Tiger66639/gulp)
 ## What is gulp?
 
 gulp is a toolkit that will help you automate painful or time-consuming tasks in your development workflow. For web development (if that's your thing) it can help you by doing CSS preprocessing, JS transpiling, minification, live reloading, and much more.
